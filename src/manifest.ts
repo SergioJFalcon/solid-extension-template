@@ -14,6 +14,10 @@ const manifest = defineManifest(async () => ({
   version: `${major}.${minor}.${patch}.${label}`,
   description: packageJson.description,
   options_page: "src/pages/options/index.html",
+  "options_ui": {
+    "page": "src/pages/options/index.html",
+    "open_in_tab": false
+  },
   background: { service_worker: "src/pages/background/index.ts" },
   action: {
     default_popup: "src/pages/popup/index.html",
@@ -38,6 +42,7 @@ const manifest = defineManifest(async () => ({
       matches: ["*://*/*"],
     },
   ],
+  permissions: ["storage", "activeTab"],
 }));
 
 export default manifest;
