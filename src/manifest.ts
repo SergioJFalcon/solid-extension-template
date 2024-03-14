@@ -10,15 +10,19 @@ const [major, minor, patch, label = "0"] = packageJson.version
 
 const manifest = defineManifest(async () => ({
   manifest_version: 3,
-  name: packageJson.name,
-  version: `${major}.${minor}.${patch}.${label}`,
+  name: packageJson.displayName ?? packageJson.name,
   description: packageJson.description,
+  author: packageJson.author,
+  version: `${major}.${minor}.${patch}.${label}`,
   options_page: "src/pages/options/index.html",
   "options_ui": {
     "page": "src/pages/options/index.html",
     "open_in_tab": false
   },
-  background: { service_worker: "src/pages/background/index.ts" },
+  background: { 
+    service_worker: "src/pages/background/index.ts",
+    persistent: false
+  },
   action: {
     default_popup: "src/pages/popup/index.html",
     default_icon: "icons/34x34.png",
@@ -31,18 +35,31 @@ const manifest = defineManifest(async () => ({
   },
   content_scripts: [
     {
-      matches: ["http://*/*", "https://*/*", "<all_urls>"],
+      matches: ["<all_urls>"],
       js: ["src/pages/content/index.tsx"],
     },
   ],
   devtools_page: "src/pages/devtools/index.html",
+  side_panel: {
+    "default_path": "src/pages/panel/index.html",
+  },
   web_accessible_resources: [
     {
       resources: ["assets/js/*.js", "assets/css/*.css", "assets/img/*"],
       matches: ["*://*/*"],
     },
   ],
-  permissions: ["storage", "activeTab"],
+  permissions: [
+    "storage", 
+    "activeTab", 
+    "tabs", 
+    "alarms", 
+    "contextMenus", 
+    "identity", 
+    "identity.email", 
+    "notifications", 
+    "sidePanel",
+  ],
 }));
 
 export default manifest;

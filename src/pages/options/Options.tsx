@@ -5,7 +5,7 @@ import styles from "./Options.module.css";
 import { createSignal, onMount } from 'solid-js';
 
 const Options = () => {
-  const [content, setContent] = createSignal(null);
+  const [content, setContent] = createSignal(false);
   const [devtools, setDevtools] = createSignal(true);
   const [popup, setPopup] = createSignal(true);
   const [newtab, setNewtab] = createSignal(true);

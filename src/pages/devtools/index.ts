@@ -7,6 +7,12 @@
 // } catch (e) {
 //   console.error("falcon - error: ",e);
 // }
-chrome.devtools.panels.create('Dev tool', '34x34.png', 'src/pages/popup/index.html', () => {
-  console.log('user switched to this panel');
+
+chrome.storage.sync.get(['devtools'], (result) => {
+  if(result.devtools) {
+    console.log('Devtools panel is enabled');
+    chrome.devtools.panels.create('Dev tool', '34x34.png', 'src/pages/popup/index.html', () => {
+      console.log('user switched to this panel');
+    });
+  }
 });

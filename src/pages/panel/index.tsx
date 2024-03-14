@@ -7,4 +7,9 @@ if (!appContainer) {
   throw new Error("Can not find AppContainer");
 }
 
-render(Panel, appContainer);
+// Render the Panel component if the panel option is enabled
+chrome.storage.sync.get(['panel'], (result) => {
+  if (result.panel) {
+    render(Panel, appContainer);
+  }
+});

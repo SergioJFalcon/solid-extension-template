@@ -211,6 +211,11 @@ export interface ManifestType {
       }
     | undefined;
   short_name?: string | undefined;
+  side_panel?:
+    | {
+        default_path?: string | undefined;
+      }[]
+    | undefined;
   spellcheck?:
     | {
         dictionary_language?: string | undefined;

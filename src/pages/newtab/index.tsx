@@ -7,4 +7,9 @@ if (!appContainer) {
   throw new Error("Can not find AppContainer");
 }
 
-render(Newtab, appContainer);
+// Render the Newtab component if the newtab option is enabled
+chrome.storage.sync.get(['newtab'], (result) => {
+  if (result.newtab) {
+    render(Newtab, appContainer);
+  }
+});
