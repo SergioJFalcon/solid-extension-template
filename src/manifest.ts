@@ -27,9 +27,6 @@ const manifest = defineManifest(async () => ({
     default_popup: "src/pages/popup/index.html",
     default_icon: "icons/34x34.png",
   },
-  chrome_url_overrides: {
-    newtab: "src/pages/newtab/index.html",
-  },
   icons: {
     "128": "icons/128x128.png",
   },
@@ -39,10 +36,13 @@ const manifest = defineManifest(async () => ({
       js: ["src/pages/content/index.tsx"],
     },
   ],
-  devtools_page: "src/pages/devtools/index.html",
-  side_panel: {
-    "default_path": "src/pages/panel/index.html",
-  },
+  // chrome_url_overrides: {
+  //   newtab: "src/pages/newtab/index.html",
+  // },
+  // devtools_page: "src/pages/devtools/index.html",
+  // side_panel: {
+  //   "default_path": "src/pages/panel/index.html",
+  // },
   web_accessible_resources: [
     {
       resources: ["assets/js/*.js", "assets/css/*.css", "assets/img/*"],
@@ -58,7 +58,7 @@ const manifest = defineManifest(async () => ({
     "identity", 
     "identity.email", 
     "notifications", 
-    "sidePanel",
+    // "sidePanel",
   ],
 }));
 
